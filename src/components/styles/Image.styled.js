@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-  src: ${(props) => props};
-  min-width: 100%;
-  min-height: 100%;
-  height: 150px;
-  width: 100%;
+  src: ${(props) => props.src};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   loading: lazy;
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
+  border-top-right-radius: ${(props) => props.borderRadius};
+  border-top-left-radius: ${(props) => props.borderRadius};
   object-fit: cover;
 `;

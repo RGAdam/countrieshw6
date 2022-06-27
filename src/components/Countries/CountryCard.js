@@ -7,7 +7,14 @@ const CountryCard = ({ country }) => {
   return (
     <CardWrapper>
       <Wrapper width="250px" height="150px">
-        {country && <Image src={country?.flags?.svg} />}
+        {country && (
+          <Image
+            width="250px"
+            height="150px"
+            borderRadius="12px"
+            src={country?.flags?.svg}
+          />
+        )}
       </Wrapper>
 
       <h3>{country?.name?.common}</h3>
