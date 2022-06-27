@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import axios from "axios";
+
+import CountryList from "./components/Countries/CountryList";
+import { Wrapper } from "./components/styles/Wrapper.styled";
+import { Header } from "./components/styles/Header.styled";
+import { FilterInput } from "./components/styles/FilterInput.styled";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [countries, setCountries] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data: response } = await axios.get(
+          "https://restcountries.com/v3.1/all"
+        );
+        setCountries(response);
+      } catch (error) {
+        console.error(error.message);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      {loading && <h2>Loading</h2>}
+      {!loading && (
+        <Wrapper>
+          <Header>
+            <h1 style={{ margin: 0, fontSize: 20 }}>Where in the world?</h1>
+            <button type="button">Dark Mode</button>
+          </Header>
+
+          <FilterInput placeholder="Search for a country..." />
+
+          <CountryList countries={countries} />
+        </Wrapper>
+      )}
+    </Wrapper>
   );
 }
 
