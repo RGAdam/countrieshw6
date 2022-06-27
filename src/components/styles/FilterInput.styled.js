@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const FilterInput = styled.input`
-  margin-bottom: 30px;
   margin-left: 50px;
   padding: 10px;
   border-radius: 5px;

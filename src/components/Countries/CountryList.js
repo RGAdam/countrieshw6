@@ -1,14 +1,14 @@
 import CountryCard from "./CountryCard";
 import { FlexWrapper } from "../styles/FlexWrapper.styled";
-import { Link } from "react-router-dom";
+import { StyledLink } from "../styles/CountryList.styled";
 
 const CountryList = ({ countries }) => {
   return (
-    <FlexWrapper>
+    <FlexWrapper justifyContent="space-evenly">
       {countries.map((country, index) => (
-        <Link to={`/countries/${country.cioc}`} key={index}>
+        <StyledLink to={`/countries/${country.cioc}`} key={index}>
           <CountryCard country={country} />
-        </Link>
+        </StyledLink>
       ))}
     </FlexWrapper>
   );

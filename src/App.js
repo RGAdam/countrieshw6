@@ -7,11 +7,12 @@ import CountryList from "./components/Countries/CountryList";
 import { Wrapper } from "./components/styles/Wrapper.styled";
 import { Header } from "./components/styles/Header.styled";
 import { FilterInput } from "./components/styles/FilterInput.styled";
+import { FlexWrapper } from "./components/styles/FlexWrapper.styled";
+import DropDownSelector from "./components/DropDownSelector";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +41,10 @@ function App() {
             <button type="button">Dark Mode</button>
           </Header>
 
-          <FilterInput placeholder="Search for a country..." />
+          <FlexWrapper justifyContent="space-between">
+            <FilterInput placeholder="Search for a country..." />
+            <DropDownSelector />
+          </FlexWrapper>
 
           <CountryList countries={countries} />
         </Wrapper>
