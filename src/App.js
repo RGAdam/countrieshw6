@@ -9,6 +9,7 @@ import { Header } from "./components/styles/Header.styled";
 import { FilterInput } from "./components/styles/FilterInput.styled";
 import { FlexWrapper } from "./components/styles/FlexWrapper.styled";
 import DropDownSelector from "./components/DropDownSelector";
+import { H1 } from "./components/styles/H1.styled";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,14 +34,13 @@ function App() {
 
   return (
     <Wrapper>
-      {loading && <h2>Loading</h2>}
+      <Header>
+        <h1 style={{ margin: 0, fontSize: 20 }}>Where in the world?</h1>
+        <button type="button">Dark Mode</button>
+      </Header>
+      {loading && <H1>Loading</H1>}
       {!loading && (
         <Wrapper>
-          <Header>
-            <h1 style={{ margin: 0, fontSize: 20 }}>Where in the world?</h1>
-            <button type="button">Dark Mode</button>
-          </Header>
-
           <FlexWrapper justifyContent="space-between">
             <FilterInput placeholder="Search for a country..." />
             <DropDownSelector />
