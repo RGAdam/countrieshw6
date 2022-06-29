@@ -17,7 +17,7 @@ const SearchInput = ({ onSearchCountries, theme }) => {
       margin="0 5% 0 5%"
       theme={theme}
     >
-      <Icon source="magnifying-glass" />
+      <Icon source="magnifying-glass" theme={theme} />
       <SearchInp
         placeholder="Search for a country..."
         onChange={onSearchChangeHandler}

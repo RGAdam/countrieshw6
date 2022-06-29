@@ -11,7 +11,7 @@ export const Image = styled.img`
 
   @media (max-width: 600px) {
     align-self: center;
-    width: 300px;
+    width: 250px;
     height: 150px;
   }
 `;

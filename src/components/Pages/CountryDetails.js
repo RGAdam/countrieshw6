@@ -12,7 +12,11 @@ import { Paragraph } from "../styles/Paragraph.styled";
 import { Button } from "../styles/Button.styled";
 import { StyledLink } from "../styles/CountryList.styled";
 import { Wrapper } from "../styles/Wrapper.styled";
-import { BodyWrapper, StyledFlexWrapper } from "./CountryDetails.styled";
+import {
+  BodyWrapper,
+  CountryNameH1,
+  StyledFlexWrapper,
+} from "./CountryDetails.styled";
 
 import Icon from "../Modules/Icon";
 import DarkModeButton from "../Modules/DarkModeButton";
@@ -124,7 +128,7 @@ const CountryDetails = () => {
           height="35px"
           theme={theme}
         >
-          <Icon source="arrow-left" />
+          <Icon source="arrow-left" theme={theme} />
           Back
         </Button>
       </StyledLink>
@@ -134,16 +138,22 @@ const CountryDetails = () => {
         <StyledFlexWrapper
           flexDirection="row"
           alignItems="flex-start"
-          justifyContent="center"
+          justifyContent="space-around"
         >
           <Image width="450px" height="300px" src={country[0]?.flags.svg} />
           <FlexWrapper
             flexDirection="column"
-            alignItems="space-between"
-            margin="0 0 0 100px"
+            alignItems="space-around"
+            margin="0 0 0 0"
           >
-            <H1 margin="0 0 25px 0">{country[0]?.name?.common}</H1>
-            <StyledFlexWrapper flexDirection="row" alignItems="flex-start">
+            <CountryNameH1 margin="0 0 25px 0">
+              {country[0]?.name?.common}
+            </CountryNameH1>
+            <StyledFlexWrapper
+              flexDirection="row"
+              alignItems="flex-start"
+              justifyContent="space-between"
+            >
               <StyledFlexWrapper flexDirection="column">
                 <Paragraph margin="10px 0">
                   <b>Native Names:</b> {nativeNames}
@@ -161,7 +171,7 @@ const CountryDetails = () => {
                   <b>Capital:</b> {country[0]?.capital}
                 </Paragraph>
               </StyledFlexWrapper>
-              <StyledFlexWrapper flexDirection="column" margin="0 0 0 100px">
+              <StyledFlexWrapper flexDirection="column" margin="0 0 0 0">
                 <Paragraph margin="10px 0">
                   <b>Top Level Domain:</b> {country[0]?.tld}
                 </Paragraph>
@@ -177,19 +187,21 @@ const CountryDetails = () => {
               <Paragraph margin="0 20px 0 0">
                 <b>Border Countries:</b>
               </Paragraph>
-              {borders?.map((border, index) => (
-                <StyledLink to={`/countries/${border}`} key={index}>
-                  <Button
-                    type="button"
-                    width="75px"
-                    height="35px"
-                    margin="20px"
-                    theme={theme}
-                  >
-                    {border}
-                  </Button>
-                </StyledLink>
-              ))}
+              <FlexWrapper flexWrap="wrap">
+                {borders?.map((border, index) => (
+                  <StyledLink to={`/countries/${border}`} key={index}>
+                    <Button
+                      type="button"
+                      width="75px"
+                      height="35px"
+                      margin="20px"
+                      theme={theme}
+                    >
+                      {border}
+                    </Button>
+                  </StyledLink>
+                ))}
+              </FlexWrapper>
             </FlexWrapper>
           </FlexWrapper>
         </StyledFlexWrapper>

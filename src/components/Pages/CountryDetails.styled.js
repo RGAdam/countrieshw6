@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FlexWrapper } from "../styles/FlexWrapper.styled";
 import { Wrapper } from "../styles/Wrapper.styled";
+import { H1 } from "../styles/H1.styled";
 
 export const StyledFlexWrapper = styled(FlexWrapper)`
   @media (max-width: 600px) {
@@ -25,4 +26,11 @@ export const BodyWrapper = styled(Wrapper)`
 export const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: inherit;
+`;
+
+export const CountryNameH1 = styled(H1)`
+  @media (max-width: 550px) {
+    text-align: center;
+    margin-top: 30px;
+  }
 `;

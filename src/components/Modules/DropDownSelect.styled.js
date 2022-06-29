@@ -14,7 +14,7 @@ export const DropDownSelect = styled.select`
   background-color: ${(props) =>
     props.theme === "dark" ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)"};
 
-  @media (max-width: 600px) {
+  @media (max-width: 577px) {
     margin: 10px 0 10px 5%;
   }
 `;

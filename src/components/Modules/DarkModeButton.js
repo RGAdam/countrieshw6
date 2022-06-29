@@ -7,7 +7,7 @@ const DarkModeButton = ({ onClick, theme }) => {
   return (
     <FlexWrapper height="25px" minHeight="0">
       <DarkModeButt type="button" onClick={onClick} theme={theme}>
-        <Icon source="moon" />
+        <Icon source="moon" theme={theme} />
         Dark Mode
       </DarkModeButt>
     </FlexWrapper>
