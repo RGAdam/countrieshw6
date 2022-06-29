@@ -1,6 +1,7 @@
+import { Route, Routes } from "react-router-dom";
+
 import CountryLanding from "./components/Pages/CountryLanding";
 import CountryDetails from "./components/Pages/CountryDetails";
-import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (

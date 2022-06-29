@@ -1,8 +1,9 @@
-import CountryCard from "./CountryCard";
 import { FlexWrapper } from "../styles/FlexWrapper.styled";
 import { StyledLink } from "../styles/CountryList.styled";
 
-const CountryList = ({ countries }) => {
+import CountryCard from "./CountryCard";
+
+const CountryList = ({ countries, theme }) => {
   return (
     <FlexWrapper
       justifyContent="space-evenly"
@@ -12,7 +13,7 @@ const CountryList = ({ countries }) => {
     >
       {countries.map((country, index) => (
         <StyledLink to={`/countries/${country.cioc}`} key={index}>
-          <CountryCard country={country} />
+          <CountryCard country={country} theme={theme} />
         </StyledLink>
       ))}
     </FlexWrapper>

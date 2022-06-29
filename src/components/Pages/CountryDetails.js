@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { Wrapper } from "../styles/Wrapper.styled";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+
 import { Header } from "../styles/Header.styled";
 import { Image } from "../styles/Image.styled";
 import { FlexWrapper } from "../styles/FlexWrapper.styled";
@@ -11,6 +11,11 @@ import { H1 } from "../styles/H1.styled";
 import { Paragraph } from "../styles/Paragraph.styled";
 import { Button } from "../styles/Button.styled";
 import { StyledLink } from "../styles/CountryList.styled";
+import { Wrapper } from "../styles/Wrapper.styled";
+import { BodyWrapper, StyledFlexWrapper } from "./CountryDetails.styled";
+
+import Icon from "../Modules/Icon";
+import DarkModeButton from "../Modules/DarkModeButton";
 
 const CountryDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -19,6 +24,7 @@ const CountryDetails = () => {
   const [currencies, setCurrencies] = useState("");
   const [languages, setLanguages] = useState("");
   const [borders, setBorders] = useState("");
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   let params = useParams();
 
@@ -88,26 +94,44 @@ const CountryDetails = () => {
     getCurrencies();
     getLanguages();
     getBorders();
+    // eslint-disable-next-line
   }, [country]);
 
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
-    <Wrapper>
+    <BodyWrapper theme={theme}>
       <Header>
         <H1 margin="0" fontSize="25px">
           Where in the world?
         </H1>
-        <button type="button">Dark Mode</button>
+        <DarkModeButton onClick={toggleTheme} theme={theme} />
       </Header>
 
-      <Link to="/">
-        <Button type="button" margin="0 0 30px 50px" width="75px" height="35px">
+      <StyledLink to="/">
+        <Button
+          type="button"
+          margin="0 0 30px 50px"
+          width="75px"
+          height="35px"
+          theme={theme}
+        >
+          <Icon source="arrow-left" />
           Back
         </Button>
-      </Link>
+      </StyledLink>
 
       {loading && <h2>Loading</h2>}
       {!loading && (
-        <FlexWrapper
+        <StyledFlexWrapper
           flexDirection="row"
           alignItems="flex-start"
           justifyContent="center"
@@ -119,8 +143,8 @@ const CountryDetails = () => {
             margin="0 0 0 100px"
           >
             <H1 margin="0 0 25px 0">{country[0]?.name?.common}</H1>
-            <FlexWrapper flexDirection="row" alignItems="flex-start">
-              <FlexWrapper flexDirection="column">
+            <StyledFlexWrapper flexDirection="row" alignItems="flex-start">
+              <StyledFlexWrapper flexDirection="column">
                 <Paragraph margin="10px 0">
                   <b>Native Names:</b> {nativeNames}
                 </Paragraph>
@@ -136,8 +160,8 @@ const CountryDetails = () => {
                 <Paragraph margin="10px 0">
                   <b>Capital:</b> {country[0]?.capital}
                 </Paragraph>
-              </FlexWrapper>
-              <FlexWrapper flexDirection="column" margin="0 0 0 100px">
+              </StyledFlexWrapper>
+              <StyledFlexWrapper flexDirection="column" margin="0 0 0 100px">
                 <Paragraph margin="10px 0">
                   <b>Top Level Domain:</b> {country[0]?.tld}
                 </Paragraph>
@@ -147,8 +171,8 @@ const CountryDetails = () => {
                 <Paragraph margin="10px 0">
                   <b>Languages:</b> {languages}
                 </Paragraph>
-              </FlexWrapper>
-            </FlexWrapper>
+              </StyledFlexWrapper>
+            </StyledFlexWrapper>
             <FlexWrapper alignItems="center">
               <Paragraph margin="0 20px 0 0">
                 <b>Border Countries:</b>
@@ -160,6 +184,7 @@ const CountryDetails = () => {
                     width="75px"
                     height="35px"
                     margin="20px"
+                    theme={theme}
                   >
                     {border}
                   </Button>
@@ -167,9 +192,9 @@ const CountryDetails = () => {
               ))}
             </FlexWrapper>
           </FlexWrapper>
-        </FlexWrapper>
+        </StyledFlexWrapper>
       )}
-    </Wrapper>
+    </BodyWrapper>
   );
 };
 export default CountryDetails;

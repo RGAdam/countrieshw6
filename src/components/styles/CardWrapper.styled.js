@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const CardWrapper = styled.div`
-  border-radius: 12px;
+  border-radius: 7px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
   width: 250px;
   height: 350px;
-  background-color: hsl(0, 0%, 100%);
+  background-color: ${(props) =>
+    props.theme === "dark" ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)"};
 
   h3 {
     margin-left: 30px;
